@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="@dimen/fab_right_margin"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_cart"
+            android:translationZ="12dp" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="80dp"
+            android:layout_marginRight="@dimen/fab_right_margin"
+            android:elevation="6dp"
+            android:src="@drawable/ic_action_add_cart"
+            android:translationZ="12dp"
+            android:visibility="invisible"
+            app:backgroundTint="@color/fab1" />
+
+        <include
+            android:id="@+id/prod"
+            layout="@layout/product_view"
+            android:layout_marginLeft ="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
