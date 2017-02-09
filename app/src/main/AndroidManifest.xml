@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.bluetooth.adapter.action.DISCOVERY_STARTED"/>
+    <uses-permission android:name="android.bluetooth.adapter.action.DISCOVERY_STARTED" />
 
     <application
         android:allowBackup="true"
@@ -21,14 +21,19 @@
         <activity
             android:name=".activity.splash_search"
             android:configChanges="keyboardHidden|screenSize">
+
+        </activity>
+        <activity android:name=".activity.ProductActivity"
+            android:theme="@style/ProductActivity"
+            android:parentActivityName=".activity.Search"/>
+        <activity android:name=".activity.NearByDevices" />
+        <activity android:name=".activity.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProductActivity" />
-        <activity android:name=".activity.NearByDevices"></activity>
     </application>
 
 </manifest>

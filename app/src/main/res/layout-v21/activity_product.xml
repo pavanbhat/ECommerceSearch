@@ -5,8 +5,7 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light">
+        android:layout_height="match_parent">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_cart"
@@ -37,9 +36,8 @@
             android:id="@+id/prod"
             layout="@layout/product_view"
             android:layout_marginLeft ="80dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
     </android.support.design.widget.CoordinatorLayout>

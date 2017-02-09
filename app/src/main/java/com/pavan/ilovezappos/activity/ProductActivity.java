@@ -1,17 +1,29 @@
 package com.pavan.ilovezappos.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.pavan.ilovezappos.R;
 import com.pavan.ilovezappos.controller.product_page;
 import com.pavan.ilovezappos.databinding.ActivityProductBinding;
@@ -23,12 +35,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity{
 
 
     ActivityProductBinding app_binding;
     Animation fab_show, fab_hide, fab_rotate, fab_other;
     Boolean isShowing = false;
+    public ProductActivity activity;
 
     public ActivityProductBinding getApp_binding() {
         return app_binding;
@@ -38,6 +51,10 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app_binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -123,4 +140,48 @@ public class ProductActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.log_out){
+            Auth.GoogleSignInApi.signOut(SignIn.mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            Toast.makeText(ProductActivity.this, "You have now successfully logged out!", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(ProductActivity.this, SignIn.class));
+                        }
+                    });
+        }
+        if(item.getItemId() == android.R.id.home) {
+            // Respond to the action bar's Up/Home button
+            /*Intent upIntent = NavUtils.getParentActivityIntent(this);
+            NavUtils.navigateUpTo(this, upIntent);*/
+            NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onStart() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        SignIn.mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        SignIn.mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+
+
 }

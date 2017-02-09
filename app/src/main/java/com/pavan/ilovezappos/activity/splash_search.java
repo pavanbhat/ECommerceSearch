@@ -25,7 +25,7 @@ public class splash_search extends AppCompatActivity {
                 startActivity(new Intent(splash_search.this, Search.class));
                 finish();
             }
-        }, 2500);
+        }, 2000);
     }
 
     @Override
