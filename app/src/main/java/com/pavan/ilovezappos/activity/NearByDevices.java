@@ -12,8 +12,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.pavan.ilovezappos.R;
 import com.pavan.ilovezappos.databinding.ActivityNearByDevicesBinding;
@@ -30,7 +33,6 @@ public class NearByDevices extends AppCompatActivity {
     ListView l;
 
 
-
     ActivityNearByDevicesBinding activityNearByDevicesBinding;
 
     public ActivityNearByDevicesBinding getActivityNearByDevicesBinding() {
@@ -43,11 +45,23 @@ public class NearByDevices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityNearByDevicesBinding = DataBindingUtil.setContentView(this, R.layout.activity_near_by_devices);
         Intent out = getIntent();
-        bm = (BluetoothManager)getSystemService(BLUETOOTH_SERVICE);
+        getActivityNearByDevicesBinding().listView.setClickable(true);
+        bm = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         bluetoothAdapter.startDiscovery();
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(broadcastReceiver, filter);
+
+
+        getActivityNearByDevicesBinding().listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String obj =  getActivityNearByDevicesBinding().listView.getItemAtPosition(position).toString();
+                Toast.makeText(NearByDevices.this, obj, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         /*bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
         for(BluetoothDevice bd :bluetoothDeviceSet){
             list.add(bd.getName());

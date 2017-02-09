@@ -18,6 +18,7 @@ public class splash_search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_splash_search);
         ass_binding = DataBindingUtil.setContentView(this, R.layout.activity_splash_search);
+        Intent.A
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

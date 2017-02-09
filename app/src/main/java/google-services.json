@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "681488278418",
+    "project_id": "firebase-ilovezappos"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681488278418:android:63e3d2dc6868f0b5",
+        "android_client_info": {
+          "package_name": "com.pavan.ilovezappos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681488278418-gs36dj9a5olk2k7oltmbl9a46onpu4a7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs-wfdu1cNPeEeHnYH01AJHVuhD81u4yc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-77086105-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
