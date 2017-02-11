@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.bluetooth.adapter.action.DISCOVERY_STARTED" />
 
-
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
@@ -27,14 +26,14 @@
             android:configChanges="keyboardHidden|screenSize" />
         <activity
             android:name=".activity.splash_search"
-            android:configChanges="keyboardHidden|screenSize">
-
-        </activity>
+            android:configChanges="keyboardHidden|screenSize" />
         <activity
             android:name=".activity.ProductActivity"
             android:parentActivityName=".activity.Search"
             android:theme="@style/ProductActivity" />
-        <activity android:name=".activity.NearByDevices" />
+        <activity
+            android:name=".activity.NearByDevices"
+            android:theme="@style/NearByDevices" />
         <activity android:name=".activity.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

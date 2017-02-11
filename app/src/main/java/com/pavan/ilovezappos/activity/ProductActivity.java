@@ -1,6 +1,5 @@
 package com.pavan.ilovezappos.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -19,7 +18,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -35,7 +33,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class ProductActivity extends AppCompatActivity{
+public class ProductActivity extends AppCompatActivity {
 
 
     ActivityProductBinding app_binding;
@@ -53,7 +51,6 @@ public class ProductActivity extends AppCompatActivity{
         app_binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -97,12 +94,15 @@ public class ProductActivity extends AppCompatActivity{
                 getApp_binding().prod.imageView2.setImageBitmap(bmp);
             }
 
-            String op = " Original Price: " + productExtraction.getResults().get(0).getBrandName();
-            String d = " Discount: " + productExtraction.getResults().get(0).getOriginalPrice();
+
+            String op = " Original Price: " + productExtraction.getResults().get(0).getOriginalPrice();
+            String d = " Discount: " + productExtraction.getResults().get(0).getPercentOff();
             String cp = " Current price " + productExtraction.getResults().get(0).getPrice();
             getApp_binding().prod.originalPrice.setText(op);
             getApp_binding().prod.discout.setText(d);
             getApp_binding().prod.currentPrice.setText(cp);
+            getApp_binding().prod.head.setText(getApp_binding().prod.head.getText().toString() + " " + productExtraction.getResults().get(0).getProductName() + " " + productExtraction.getResults().get(0).getBrandName());
+
             Log.i("Pavan's Check", "returned product details from async task!");
 
             fab_show = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.show);
@@ -150,7 +150,7 @@ public class ProductActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.log_out){
+        if (item.getItemId() == R.id.log_out) {
             Auth.GoogleSignInApi.signOut(SignIn.mGoogleApiClient).setResultCallback(
                     new ResultCallback<Status>() {
                         @Override
@@ -160,10 +160,8 @@ public class ProductActivity extends AppCompatActivity{
                         }
                     });
         }
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             // Respond to the action bar's Up/Home button
-            /*Intent upIntent = NavUtils.getParentActivityIntent(this);
-            NavUtils.navigateUpTo(this, upIntent);*/
             NavUtils.navigateUpFromSameTask(this);
         }
         return super.onOptionsItemSelected(item);
@@ -181,7 +179,6 @@ public class ProductActivity extends AppCompatActivity{
         SignIn.mGoogleApiClient.connect();
         super.onStart();
     }
-
 
 
 }

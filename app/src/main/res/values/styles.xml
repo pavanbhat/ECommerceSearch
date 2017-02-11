@@ -9,5 +9,5 @@
     </style>
 
     <style name="ProductActivity" parent="Theme.AppCompat"></style>
-
+    <style name="NearByDevices" parent="Theme.AppCompat"></style>
 </resources>

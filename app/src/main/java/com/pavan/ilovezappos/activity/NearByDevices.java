@@ -10,8 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,15 +22,14 @@ import com.pavan.ilovezappos.R;
 import com.pavan.ilovezappos.databinding.ActivityNearByDevicesBinding;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class NearByDevices extends AppCompatActivity {
 
     BluetoothManager bm;
     BluetoothAdapter bluetoothAdapter;
-    Set<BluetoothDevice> bluetoothDeviceSet;
     ArrayList<String> list = new ArrayList<String>();
     ListView l;
+    String term = "";
 
 
     ActivityNearByDevicesBinding activityNearByDevicesBinding;
@@ -45,6 +44,7 @@ public class NearByDevices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityNearByDevicesBinding = DataBindingUtil.setContentView(this, R.layout.activity_near_by_devices);
         Intent out = getIntent();
+        /*term = out.getExtras().getString("search");*/
         getActivityNearByDevicesBinding().listView.setClickable(true);
         bm = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -56,17 +56,18 @@ public class NearByDevices extends AppCompatActivity {
         getActivityNearByDevicesBinding().listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String obj =  getActivityNearByDevicesBinding().listView.getItemAtPosition(position).toString();
-                Toast.makeText(NearByDevices.this, obj, Toast.LENGTH_LONG).show();
+                String obj = getActivityNearByDevicesBinding().listView.getItemAtPosition(position).toString();
+                Toast.makeText(NearByDevices.this, "Sending to this device: " + obj , Toast.LENGTH_LONG).show();
+
+                /*Intent sendInfoIntent = new Intent(NearByDevices.this, Transfer.class);
+                if (term != "") {
+                    sendInfoIntent.putExtra("search", term);
+                    startActivity(sendInfoIntent);
+                }*/
+
             }
         });
 
-
-        /*bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
-        for(BluetoothDevice bd :bluetoothDeviceSet){
-            list.add(bd.getName());
-        }
-        getActivityNearByDevicesBinding().listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list));*/
     }
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -76,7 +77,6 @@ public class NearByDevices extends AppCompatActivity {
                 BluetoothDevice device = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 list.add(device.getName() + "\n" + device.getAddress());
-//                Log.i("BT", device.getName() + "\n" + device.getAddress());
                 getActivityNearByDevicesBinding().listView.setAdapter(new ArrayAdapter<String>(context,
                         android.R.layout.simple_list_item_1, list));
             }
