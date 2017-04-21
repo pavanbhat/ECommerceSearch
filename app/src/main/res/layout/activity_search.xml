@@ -11,12 +11,12 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="19dp"
-            app:srcCompat="@drawable/ilz" />
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40pt"
+            app:srcCompat="@drawable/esearch" />
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,25 +24,26 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
 
-            android:background="@android:color/background_light"
-            tools:context="com.pavan.ilovezappos.activity.Search"
-            android:layout_below="@+id/imageView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp">
+            android:layout_below="@+id/imageView5"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/background_light"
+            tools:context="com.pavan.ilovezappos.activity.Search">
 
             <EditText
                 android:id="@+id/search_input"
                 style="@style/Widget.AppCompat.EditText"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="48dp"
+                android:drawableBottom="@color/colorAccent"
                 android:hint="Search"
                 android:textColor="?attr/colorBackgroundFloating"
                 tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="225dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                tools:layout_editor_absoluteY="225dp" />
 
             <Button
                 android:id="@+id/search_button"
