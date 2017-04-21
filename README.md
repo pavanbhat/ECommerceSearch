@@ -1,4 +1,4 @@
-# ECommerce Search on ILoveZappos App
+# ECommerce Search App
 <p align="justify">An app that supports an ecommerce portal in order to query for different shopping items and to display the best out of the available options. This app also provides a functionality of sharing this result with nearby users via bluetooth. This app makes use of Retrofit 2.0 API and includes advanced concepts such as databinding for callbacks and animations.</p>
 
 <p align="justify">This search results into an extraction of the JSON data from the REST endpoint directed by the Zappos API. This extraction is done using the Retrofit 2.0 API that will get the top result from the REST endpoint and the product will be displayed in an another activity as a Product page. This will contain the details of the product such as the Original price, Name of the product, discount on the product and the current price after the discount.</p>
